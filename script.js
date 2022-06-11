@@ -1,5 +1,6 @@
 const fetchURL = "https://api.open5e.com/monsters/"
-var languageButtonsEl = document.querySelector('#language-buttons');
+var repoContainerEl = document.querySelector('#monster-container');
+var repoSearchTerm = document.querySelector('#searchItem');
 
 
 var formSubmitHandler = function (event) {
@@ -7,13 +8,13 @@ var formSubmitHandler = function (event) {
 
   var username = nameInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+  if (monsterName) {
+    getUserRepos(monsterName);
 
     repoContainerEl.textContent = '';
     nameInputEl.value = '';
   } else {
-    alert('Please enter a GitHub username');
+    alert('Please enter a monster name');
   }
 };
 
@@ -157,8 +158,8 @@ fetch(fetchURL, {
     // var image = document.getElementById("monsterImage");
     // if (monsters.img_main) {
     //   image.src = monsters.img_main;
-    // }
-  }
+  //   // }
+  // }
 
   serveMonster(fetchURL)
 
