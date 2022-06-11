@@ -1,4 +1,4 @@
-const fetchURL = "https://api.open5e.com/monsters/";
+const fetchURL = "https://api.open5e.com/monsters/?limit=1000"; 
 // const fetchURL = "https://www.dnd5eapi.co/api/monsters";
 var repoContainerEl = document.querySelector("#monster-container");
 var repoSearchTerm = document.querySelector("#searchItem");
@@ -21,9 +21,9 @@ var formSubmitHandler = function (event) {
 };
 
 var getUserRepos = function (user) {
-  var apiUrl = "https://api.open5e.com/monsters/";
+  // var apiUrl = "https://api.open5e.com/monsters/";
 
-  fetch(apiUrl)
+  fetch(fetchURL)
     .then(function (response) {
       if (response.ok) {
         console.log(response);
@@ -41,8 +41,6 @@ var getUserRepos = function (user) {
 };
 
 var getFeaturedRepos = function (language) {
-  // What are the query parameters doing here?
-  // TODO: Write your answer here
   var apiUrl =
     "https://api.github.com/search/repositories?q=" +
     language +
@@ -62,8 +60,6 @@ var getFeaturedRepos = function (language) {
 var displayRepos = function (repos, searchTerm) {
   if (repos.length === 0) {
     repoContainerEl.textContent = "No repositories found.";
-    // What would happen if there was no `return;` here?
-    // TODO: Write your answer here
     return;
   }
 
@@ -71,8 +67,6 @@ var displayRepos = function (repos, searchTerm) {
   console.log(repos);
 
   for (var i = 0; i < repos.results.length; i++) {
-    // What is the result of this string concatenation?
-    // TODO: Write your answer here
     console.log(repos.results[i].name);
     console.log(searchTerm);
     if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
@@ -90,15 +84,43 @@ var displayRepos = function (repos, searchTerm) {
       var statusEl = document.createElement("span");
       statusEl.classList = "flex-row align-center";
 
-      // if (repos[i].open_issues_count > 0) {
-      //   statusEl.innerHTML =
-      //     "<i class='fas fa-times status-icon icon-danger'></i>" +
-      //     repos[i].open_issues_count +
-      //     " issue(s)";
-      // } else {
-      //   statusEl.innerHTML =
-      //     "<i class='fas fa-check-square status-icon icon-success'></i>";
-      // }
+      repoEl.appendChild(statusEl);
+
+      repoContainerEl.appendChild(repoEl);
+    }
+    if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
+      var hitPoints = repos.results[i].hit_points;
+
+      var repoEl = document.createElement("div");
+      repoEl.classList =
+        "list-item flex-row justify-space-between align-center";
+
+      var titleEl = document.createElement("span");
+      titleEl.textContent = hitPoints;
+
+      repoEl.appendChild(titleEl);
+
+      var statusEl = document.createElement("span");
+      statusEl.classList = "flex-row align-center";
+
+      repoEl.appendChild(statusEl);
+
+      repoContainerEl.appendChild(repoEl);
+    }
+    if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
+      var immunities = repos.results[i].condition_immunities;
+
+      var repoEl = document.createElement("div");
+      repoEl.classList =
+        "list-item flex-row justify-space-between align-center";
+
+      var titleEl = document.createElement("span");
+      titleEl.textContent = immunities;
+
+      repoEl.appendChild(titleEl);
+
+      var statusEl = document.createElement("span");
+      statusEl.classList = "flex-row align-center";
 
       repoEl.appendChild(statusEl);
 
@@ -106,6 +128,44 @@ var displayRepos = function (repos, searchTerm) {
     }
   }
 };
+
+
+
+// var displayHP = function (repos, searchTerm) {
+//   if (repos.length === 0) {
+//     repoContainerEl.textContent = "No repositories found.";
+//     return;
+//   }
+
+//   repoSearchTerm.textContent = searchTerm;
+//   console.log(repos);
+
+//   for (var i = 0; i < repos.results.length; i++) {
+//     console.log(repos.results[i].hit_points);
+//     console.log(searchTerm);
+//     if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
+//       var hitPoints = repos.results[i].hit_points;
+
+//       var repoEl = document.createElement("div");
+//       repoEl.classList =
+//         "list-item flex-row justify-space-between align-center";
+
+//       var titleEl = document.createElement("span");
+//       titleEl.textContent = hitPoints;
+
+//       repoEl.appendChild(titleEl);
+
+//       var statusEl = document.createElement("span");
+//       statusEl.classList = "flex-row align-center";
+
+//       repoEl.appendChild(statusEl);
+
+//       repoContainerEl.appendChild(repoEl);
+//     }
+//   }
+// };
+
+
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
