@@ -10,11 +10,11 @@
   <body>
 
     <div class="card">
-      <h3 class="card-header text-uppercase">Search By User</h3>
+      <h3 class="card-header text-uppercase">Search By Monster</h3>
       <form id="user-form" class="card-body">
-        <label class="form-label" for="username">Username</label>
-        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-        <button type="submit" class="btn">Get User</button>
+        <label class="form-label" for="monsterName">Monster Name</label>
+        <input name="monsterName" id="monsterName" type="text" autofocus="true" class="form-input" />
+        <button type="submit" class="btn">Get Monster</button>
       </form>
     </div>
     
@@ -32,6 +32,13 @@
     <div class="container" id="xp">
       <h1>Experience Points Received:</h1>
     </div>
+
+    <div class="col-12 col-md-8">
+      <h2 class="subtitle">Showing stats for: <span id="searchItem"></span></h2>
+      <!-- There needs to be an empty HTML element for us to write repository data to. -->
+      <div id="monster-container" class="list-group"></div>
+    </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
