@@ -10,7 +10,7 @@
   <body>
     <div class="card">
       <h3 class="card-header text-uppercase">Search By Monster</h3>
-      <form id="user-form" class="card-body">
+      <form id="userForm" class="card-body">
         <label class="form-label" for="monsterName">Monster Name</label>
         <input
           name="monsterName"
@@ -22,12 +22,11 @@
         <button type="submit" class="btn">Get Monster</button>
       </form>
     </div>
-  
 
     <div class="col-12 col-md-8">
       <h2 class="subtitle">Monster Stats for: <span id="searchItem"></span></h2>
       <!-- There needs to be an empty HTML element for us to write repository data to. -->
-      <div id="monster-container" class="list-group"></div>
+      <div id="monsterContainer" class="list-group"></div>
     </div>
 
     <script src="./script.js"></script>
