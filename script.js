@@ -1,144 +1,88 @@
-const fetchURL = "https://api.open5e.com/monsters/?limit=1000"; 
+const fetchURL = "https://api.open5e.com/monsters/?limit=1000";
 const fetchURLTwo = "https://www.dnd5eapi.co/api/monsters/";
-var repoContainerEl = document.querySelector("#monster-container");
-var repoSearchTerm = document.querySelector("#searchItem");
-var userFormEl = document.querySelector("#user-form");
+var monsterContainerEl = document.querySelector("#monsterContainer");
+var searchMonster = document.querySelector("#searchItem");
+var userFormEl = document.querySelector("#userForm");
 var nameInputEl = document.querySelector("#monsterName");
 
-
-//Calling first API// 
+//Calling first API//
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
   var monsterName = nameInputEl.value.trim();
 
   if (monsterName) {
-    getUserRepos(monsterName);
+    getMonsterStats(monsterName);
 
-    repoContainerEl.textContent = "";
+    monsterContainerEl.textContent = "";
     nameInputEl.value = "";
   } else {
     alert("Please enter a monster name");
   }
 };
 
-var getUserRepos = function (user) {
+var getMonsterStats = function (mon) {
   // var apiUrl = "https://api.open5e.com/monsters/";
 
-  fetch(fetchURL)
-    .then(function (response) {
-      if (response.ok) {
-        // console.log(response);
-        response.json().then(function (data) {
-          // console.log(data);
-          displayRepos(data, user);
-        });
-      } else {
-        alert("Error: " + response.statusText);
-      }
-    })
+  fetch(fetchURL).then(function (response) {
+    if (response.ok) {
+      // console.log(response);
+      response.json().then(function (data) {
+        // console.log(data);
+        displayStats(data, mon);
+      });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+
+  fetch(fetchURLTwo + mon).then(function (response) {
+    if (response.ok) {
+      // console.log(response);
+      response.json().then(function (data) {
+        console.log(data);
+        // displayStats(data, mon);
+      });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+  // .then(function (response) {
+  //   return response.json();
+  // })
+  // .then(function (data) {
+  //   console.log(data);
+  // });
 };
 
+// Joey Help
+// fetch(fetchURLTwo)
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
+//   });
 
-//Second API//
-// var formSubmitHandler = function (event) {
-//   event.preventDefault();
-
-//   var monsterName = nameInputEl.value.trim();
-
-//   if (monsterName) {
-//     getUserRepos(monsterName);
-
-//     repoContainerEl.textContent = "";
-//     nameInputEl.value = "";
-//   } else {
-//     alert("Please enter a monster name");
-//   }
-// };
-
-// var getUserRepos = function (user) {
-
-
-//   fetch(fetchURLTwo)
-//     .then(function (response) {
-//       if (response.ok) {
-//         // console.log(response);
-//         response.json().then(function (data) {
-//           // console.log(data);
-//           displayRepos(data, user);
-//         });
-//       } else {
-//         alert("Error: " + response.statusText);
-//       }
-//     })
-// };
-
-fetch(fetchURLTwo)
-.then(function (response){
-  return response.json()
-})  
-.then(function (data){
-  console.log(data)
-})
-
-
-
-
-
-
-
-
-
-// var formSubmitHandler2 = function (event2) {
-//   event2.preventDefault();
-
-//   var monsterName2 = nameInputEl.value.trim();
-
-//   if (monsterName2) {
-//     getMonsterData(monsterName2);
-
-//     repoContainerEl.textContent = "";
-//     nameInputEl.value = "";
-//   } else {
-//     alert("Please enter a monster name");
-//   }
-// };
-// var getMonsterData = function (user2) {
-//   // var apiUrl = "https://api.open5e.com/monsters/";
-
-//   fetch(fetchURLTwo)
-//     .then(function (response2) {
-//       if (response2.ok) {
-//         console.log(response2);
-//         response2.json().then(function (data2) {
-//           console.log(data2);
-//           displayRepos(data2, user2);
-//         });
-//       } else {
-//         alert("Error: " + response2.statusText);
-//       }
-//     })
-// };
-
-var displayRepos = function (repos, searchTerm) {
-  if (repos.length === 0) {
-    repoContainerEl.textContent = "No repositories found.";
+var displayStats = function (monStat, monName) {
+  if (monStat.length === 0) {
+    monsterContainerEl.textContent = "No monsters found.";
     return;
   }
 
-  repoSearchTerm.textContent = searchTerm;
-  console.log(repos);
+  searchMonster.textContent = monName;
+  console.log(monStat);
 
-  for (var i = 0; i < repos.results.length; i++) {
-    // console.log(repos.results[i].name);
-    // console.log(searchTerm);
-    if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
-      var armorClass = repos.results[i].armor_class;
+  for (var i = 0; i < monStat.results.length; i++) {
+    // console.log(monStat.results[i].name);
+    // console.log(monName);
+    if (monStat.results[i].name.toLowerCase() === monName.toLowerCase()) {
+      var armorClass = monStat.results[i].armor_class;
 
       var repoEl = document.createElement("div");
       repoEl.classList =
         "list-item flex-row justify-space-between align-center";
-        repoEl.textContent = "Armor Class: "
+      repoEl.textContent = "Armor Class: ";
 
       var titleEl = document.createElement("span");
       titleEl.textContent = armorClass;
@@ -150,15 +94,15 @@ var displayRepos = function (repos, searchTerm) {
 
       repoEl.appendChild(statusEl);
 
-      repoContainerEl.appendChild(repoEl);
+      monsterContainerEl.appendChild(repoEl);
     }
-    if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
-      var hitPoints = repos.results[i].hit_points;
+    if (monStat.results[i].name.toLowerCase() === monName.toLowerCase()) {
+      var hitPoints = monStat.results[i].hit_points;
 
       var repoEl = document.createElement("div");
       repoEl.classList =
         "list-item flex-row justify-space-between align-center";
-        repoEl.textContent = "Hit Points: "
+      repoEl.textContent = "Hit Points: ";
 
       var titleEl = document.createElement("span");
       titleEl.textContent = hitPoints;
@@ -170,15 +114,15 @@ var displayRepos = function (repos, searchTerm) {
 
       repoEl.appendChild(statusEl);
 
-      repoContainerEl.appendChild(repoEl);
+      monsterContainerEl.appendChild(repoEl);
     }
-    if (repos.results[i].name.toLowerCase() === searchTerm.toLowerCase()) {
-      var immunities = repos.results[i].condition_immunities;
+    if (monStat.results[i].name.toLowerCase() === monName.toLowerCase()) {
+      var immunities = monStat.results[i].condition_immunities;
 
       var repoEl = document.createElement("div");
       repoEl.classList =
         "list-item flex-row justify-space-between align-center";
-        repoEl.textContent = "Condition Immunities: "
+      repoEl.textContent = "Condition Immunities: ";
 
       var titleEl = document.createElement("span");
       titleEl.textContent = immunities;
@@ -190,11 +134,9 @@ var displayRepos = function (repos, searchTerm) {
 
       repoEl.appendChild(statusEl);
 
-      repoContainerEl.appendChild(repoEl);
+      monsterContainerEl.appendChild(repoEl);
     }
   }
 };
 
-
 userFormEl.addEventListener("submit", formSubmitHandler);
-
