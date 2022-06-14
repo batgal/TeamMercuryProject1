@@ -5,6 +5,8 @@ var repoSearchTerm = document.querySelector("#searchItem");
 var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#monsterName");
 
+
+//Calling first API// 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -36,36 +38,87 @@ var getUserRepos = function (user) {
       }
     })
 };
-var formSubmitHandler2 = function (event2) {
-  event2.preventDefault();
 
-  var monsterName2 = nameInputEl.value.trim();
 
-  if (monsterName2) {
-    getMonsterData(monsterName2);
+//Second API//
+// var formSubmitHandler = function (event) {
+//   event.preventDefault();
 
-    repoContainerEl.textContent = "";
-    nameInputEl.value = "";
-  } else {
-    alert("Please enter a monster name");
-  }
-};
-var getMonsterData = function (user2) {
-  // var apiUrl = "https://api.open5e.com/monsters/";
+//   var monsterName = nameInputEl.value.trim();
 
-  fetch(fetchURLTwo)
-    .then(function (response2) {
-      if (response2.ok) {
-        console.log(response2);
-        response2.json().then(function (data2) {
-          console.log(data2);
-          displayRepos(data2, user2);
-        });
-      } else {
-        alert("Error: " + response2.statusText);
-      }
-    })
-};
+//   if (monsterName) {
+//     getUserRepos(monsterName);
+
+//     repoContainerEl.textContent = "";
+//     nameInputEl.value = "";
+//   } else {
+//     alert("Please enter a monster name");
+//   }
+// };
+
+// var getUserRepos = function (user) {
+
+
+//   fetch(fetchURLTwo)
+//     .then(function (response) {
+//       if (response.ok) {
+//         // console.log(response);
+//         response.json().then(function (data) {
+//           // console.log(data);
+//           displayRepos(data, user);
+//         });
+//       } else {
+//         alert("Error: " + response.statusText);
+//       }
+//     })
+// };
+
+fetch(fetchURLTwo)
+.then(function (response){
+  return response.json()
+})  
+.then(function (data){
+  console.log(data)
+})
+
+
+
+
+
+
+
+
+
+// var formSubmitHandler2 = function (event2) {
+//   event2.preventDefault();
+
+//   var monsterName2 = nameInputEl.value.trim();
+
+//   if (monsterName2) {
+//     getMonsterData(monsterName2);
+
+//     repoContainerEl.textContent = "";
+//     nameInputEl.value = "";
+//   } else {
+//     alert("Please enter a monster name");
+//   }
+// };
+// var getMonsterData = function (user2) {
+//   // var apiUrl = "https://api.open5e.com/monsters/";
+
+//   fetch(fetchURLTwo)
+//     .then(function (response2) {
+//       if (response2.ok) {
+//         console.log(response2);
+//         response2.json().then(function (data2) {
+//           console.log(data2);
+//           displayRepos(data2, user2);
+//         });
+//       } else {
+//         alert("Error: " + response2.statusText);
+//       }
+//     })
+// };
 
 var displayRepos = function (repos, searchTerm) {
   if (repos.length === 0) {
