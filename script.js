@@ -150,8 +150,9 @@ var displayXP= function (monStat, monName) {
 //tried using the same format for the other API but took out the name parameters since it's not in this path.
 //also tried renaming everything so that theyre different
 //this doesnt work but when i checked the console the div for this isnt showing up at all but idk if data needs to populate for the div to populategi
-for (var i = 0; i < monStat.length; i++) {
-  console.log(monName);
+  for (var i = 0; i < monStat.length; i++) {
+    console.log(monName);
+
 
   if (monStat.toLowerCase() === monName.toLowerCase()) {
     var experience = monStat.xp;
