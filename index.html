@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>DND Monster App</title>
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>DND Monster Hunter App</title>
   </head>
   <body>
+    <header class="has-text-centered has-text-danger"> <h1> Dungeons & Dragons Monster Hunter </h1> 
+     <p class="has-text-black"> “quote placeholder"</p>
+     </header>
     <div class="card">
-      <h3 class="card-header text-uppercase">Search By Monster</h3>
-      <form id="userForm" class="card-body">
+
         <label class="form-label" for="monsterName">Monster Name</label>
         <input
           name="monsterName"
@@ -19,16 +22,25 @@
           autofocus="true"
           class="form-input"
         />
-        <button type="submit" class="btn">Get Monster</button>
+        <button type="submit" class="btn">Hunt</button>
       </form>
     </div>
 
     <div class="col-12 col-md-8">
       <h2 class="subtitle">Monster Stats for: <span id="searchItem"></span></h2>
       <!-- There needs to be an empty HTML element for us to write repository data to. -->
-      <div id="monsterContainer" class="list-group"></div>
+
     </div>
 
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content has-background-danger has-text-centered py-5 px-5">
+        <h3 class="title mb-6"> GETTING MONSTER RESULTS</h3>
+      </div>
+
+     </div>
+
     <script src="./script.js"></script>
+  
   </body>
 </html>

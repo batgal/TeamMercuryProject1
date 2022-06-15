@@ -20,6 +20,7 @@ var formSubmitHandler = function (event) {
     alert("Please enter a monster name");
   }
 };
+ 
 
 var getMonsterStats = function (mon) {
   // var apiUrl = "https://api.open5e.com/monsters/";
@@ -161,6 +162,8 @@ var displayXP= function (monStat, monName) {
         "list-item flex-row justify-space-between align-center";
       xpEl.textContent = "XP gained: ";
 
+
+=======
       var titleEl = document.createElement("span");
       titleEl.textContent = experience;
 
