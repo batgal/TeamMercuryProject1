@@ -41,7 +41,7 @@ var getMonsterStats = function (mon) {
       // console.log(response);
       response.json().then(function (data) {
         console.log(data);
-        // displayStats(data, mon);
+        displayXP(data, mon);
       });
     } else {
       alert("Error: " + response.statusText);
@@ -140,21 +140,13 @@ var displayStats = function (monStat, monName) {
 };
 // second API dynamic HTML
 var displayXP= function (monStat, monName) {
-  if (monStat.length === 0) {
+  if (!monStat) {
     monsterContainerEl.textContent = "No monsters found.";
     return;
   }
 
   searchMonster.textContent = monName;
-  console.log(monStat);
-//tried using the same format for the other API but took out the name parameters since it's not in this path.
-//also tried renaming everything so that theyre different
-//this doesnt work but when i checked the console the div for this isnt showing up at all but idk if data needs to populate for the div to populategi
-  for (var i = 0; i < monStat.length; i++) {
-    console.log(monName);
 
-
-  if (monStat.toLowerCase() === monName.toLowerCase()) {
     var experience = monStat.xp;
 
     var xpEl = document.createElement("div");
@@ -174,8 +166,7 @@ var displayXP= function (monStat, monName) {
 
     monsterContainerEl.appendChild(xpEl);
   }
-}
-}
+
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
