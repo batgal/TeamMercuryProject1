@@ -16,11 +16,10 @@ var formSubmitHandler = function (event) {
     getUserRepos(monsterName);
 
     repoContainerEl.textContent = "";
-    nameInputEl.value = "";
-  } else {
-    alert("Please enter a monster name");
-  }
+    nameInputEl.value = ""; 
+  } else {modalBg}
 };
+ 
 
 var getUserRepos = function (user) {
   // var apiUrl = "https://api.open5e.com/monsters/";
@@ -197,4 +196,17 @@ var displayRepos = function (repos, searchTerm) {
 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+//Modal// 
+const huntButton = document.querySelector('.btn'); 
+const modalBg = document.querySelector('.modal-background');
+const modal = document.querySelector('.modal');
+
+huntButton.addEventListener('click', () => {
+  modal.classList.add('is-active');
+}); 
+
+modalBg.addEventListener('click', () => {
+  modal.classList.remove('is-active');
+});
 
