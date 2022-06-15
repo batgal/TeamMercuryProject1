@@ -1,21 +1,10 @@
-:root {
-ast-global-color-0: #0170B9;
-ast-global-color-1: #3a3a3a;
-ast-global-color-2: #3a3a3a;
-ast-global-color-3: #4B4F58;
-ast-global-color-4: #F5F5F5;
-ast-global-color-5: #FFFFFF;
-ast-global-color-6: #F2F5F7;
-ast-global-color-7: #424242;
-ast-global-color-8: #000000;
-}
-
 * {
     font-family: fantasy;
     color:crimson;
-    background-color: whitesmoke;
+    background-color: floralwhite;
     
     }
+
 
 h1 {
     text-align: center;
@@ -26,6 +15,7 @@ h1 {
     padding-left: 10px;
 }
 
+/* button styling */
 .btn {
     display:inline-block;
     padding:0.35em 1.2em;
@@ -41,6 +31,26 @@ h1 {
     text-align:center;
     transition: all 0.2s;
  }
+
+ /* image */
+ header {
+     background-image: url("./Assets/dndtiamat.jpeg");
+     background-size: cover;
+     background-size: center;
+     height: 700px;
+     width: 100%;
+     margin-bottom: 5%;
+ }
+
+ .container {
+    display: flex; /* or inline-flex */
+  }
+
+
+/* sword cursor */
+* {cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto !important;} /* End https://www.cursors-4u.com */
+ 
+
 
 
 
