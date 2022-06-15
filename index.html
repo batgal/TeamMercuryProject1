@@ -10,10 +10,11 @@
   </head>
   <body>
     <header class="has-text-centered has-text-danger"> <h1> Dungeons & Dragons Monster Hunter </h1> 
-     <p class="has-text-black"> “quote placeholder"</p>
+     <p class="has-text-black"> "quote placeholder"</p>
      </header>
     <div class="card">
-
+      <h1> Dungeons & Dragons Monster Hunter </h1>
+      <form id="userForm" class="card-body">
         <label class="form-label" for="monsterName">Monster Name</label>
         <input
           name="monsterName"
@@ -25,11 +26,14 @@
         <button type="submit" class="btn">Hunt</button>
       </form>
     </div>
+  
 
     <div class="col-12 col-md-8">
       <h2 class="subtitle">Monster Stats for: <span id="searchItem"></span></h2>
       <!-- There needs to be an empty HTML element for us to write repository data to. -->
-
+      <div id="monsterContainer" class="list-group has-text-centered"></div>
+      <div class="list-group">
+        
     </div>
 
     <div class="modal">
