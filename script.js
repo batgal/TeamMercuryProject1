@@ -20,7 +20,6 @@ var formSubmitHandler = function (event) {
     alert("Please enter a monster name");
   }
 };
- 
 
 var getMonsterStats = function (mon) {
   // var apiUrl = "https://api.open5e.com/monsters/";
@@ -49,7 +48,7 @@ var getMonsterStats = function (mon) {
     }
   });
   // .then(function (response) {
-  //   return response.json();
+    //   return response.json();
   // })
   // .then(function (data) {
   //   console.log(data);
@@ -148,35 +147,47 @@ var displayXP= function (monStat, monName) {
 
   searchMonster.textContent = monName;
   console.log(monStat);
-//tried using the same format for the other API but took out the name parameters since it's not in this path. 
+//tried using the same format for the other API but took out the name parameters since it's not in this path.
 //also tried renaming everything so that theyre different
 //this doesnt work but when i checked the console the div for this isnt showing up at all but idk if data needs to populate for the div to populategi
   for (var i = 0; i < monStat.length; i++) {
     console.log(monName);
 
-    if (monStat.toLowerCase() === monName.toLowerCase()) {
-      var experience = monStat.xp;
 
-      var xpEl = document.createElement("div");
-      xpEl.classList =
-        "list-item flex-row justify-space-between align-center";
-      xpEl.textContent = "XP gained: ";
+  if (monStat.toLowerCase() === monName.toLowerCase()) {
+    var experience = monStat.xp;
 
+    var xpEl = document.createElement("div");
+    xpEl.classList =
+      "list-item flex-row justify-space-between align-center";
+    xpEl.textContent = "XP gained: ";
 
-=======
-      var titleEl = document.createElement("span");
-      titleEl.textContent = experience;
+    var titleEl = document.createElement("span");
+    titleEl.textContent = experience;
 
-      xpEl.appendChild(titleEl);
+    xpEl.appendChild(titleEl);
 
-      var experienceEl = document.createElement("span");
-      experienceEl.classList = "flex-row align-center";
+    var experienceEl = document.createElement("span");
+    experienceEl.classList = "flex-row align-center";
 
-      xpEl.appendChild(experienceEl);
+    xpEl.appendChild(experienceEl);
 
-      monsterContainerEl.appendChild(xpEl);
-    }
+    monsterContainerEl.appendChild(xpEl);
   }
+}
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+//Modal// 
+const huntButton = document.querySelector('.btn'); 
+const modalBg = document.querySelector('.modal-background');
+const modal = document.querySelector('.modal');
+
+huntButton.addEventListener('click', () => {
+  modal.classList.add('is-active');
+}); 
+
+modalBg.addEventListener('click', () => {
+  modal.classList.remove('is-active');
+});
