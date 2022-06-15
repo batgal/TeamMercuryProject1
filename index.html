@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./style.css" />
     <title>DND Monster Hunter App</title>
   </head>
   <body>
-    <header class="has-text-centered has-text-danger"> <h1> Dungeons & Dragons Monster Hunter </h1> 
+    <header class="has-text-centered has-text-danger is-size-1"> <h1> Dungeons & Dragons Monster Hunter </h1> 
      <p class="has-text-black"> "quote placeholder"</p>
      </header>
     <div class="card">
-      <h1> Dungeons & Dragons Monster Hunter </h1>
+      <h1> Enter the name of the desired monster or creature you're looking for to display it's stats. </h1>
       <form id="userForm" class="card-body">
-        <label class="form-label" for="monsterName">Monster Name</label>
+        <label class="form-label" for="monsterName">Name of Monster</label>
         <input
           name="monsterName"
           id="monsterName"
@@ -24,30 +24,31 @@
           class="form-input"
         />
         <button type="submit" class="btn">Hunt</button>
+  
       </form>
     </div>
   
 
     <div class="col-12 col-md-8">
-      <h2 class="subtitle">Monster Stats for: <span id="searchItem"></span></h2>
+      <h2 class="subtitle is-size-3">Stats: <span id="searchItem"></span></h2>
       <!-- There needs to be an empty HTML element for us to write repository data to. -->
-      <div id="monsterContainer" class="list-group has-text-centered"></div>
+      <div id="monsterContainer" class="list-group has-text-centered is-size-3 is-flex-direction-column"></div>
       <div class="list-group">
         
     </div>
 
+<!-- Modal styling -->
     <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-content has-background-danger has-text-centered py-5 px-5">
-        <h3 class="title mb-6"> GETTING MONSTER RESULTS</h3>
+        <h3 class="title mb-6"> PLEASE ENTER YOUR CREATURE NAME!</h3>
       </div>
 
-     </div>
+
 
     <script src="./script.js"></script>
-  
   </body>
-  testing changes
+  
 </html>
 
 

@@ -17,7 +17,7 @@ var formSubmitHandler = function (event) {
     monsterContainerEl.textContent = "";
     nameInputEl.value = "";
   } else {
-    alert("Please enter a monster name");
+    modal.classList.add('is-active');
   }
 };
 
@@ -183,10 +183,12 @@ const huntButton = document.querySelector('.btn');
 const modalBg = document.querySelector('.modal-background');
 const modal = document.querySelector('.modal');
 
-huntButton.addEventListener('click', () => {
-  modal.classList.add('is-active');
-}); 
-
+//Allows modal to be removed once background is clicked//
 modalBg.addEventListener('click', () => {
+  modal.classList.remove('is-active');
+});
+
+//Allows modal to be removed once clicked//
+modal.addEventListener('click', () => {
   modal.classList.remove('is-active');
 });
