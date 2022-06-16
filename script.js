@@ -27,13 +27,9 @@ var formSubmitHandler = function (event) {
 };
 
 var getMonsterStats = function (mon) {
-  // var apiUrl = "https://api.open5e.com/monsters/";
-
   fetch(fetchURL).then(function (response) {
     if (response.ok) {
-      // console.log(response);
       response.json().then(function (data) {
-        // console.log(data);
         displayStats(data, mon);
       });
     } else {
@@ -43,7 +39,6 @@ var getMonsterStats = function (mon) {
 
   fetch(fetchURLTwo + mon).then(function (response) {
     if (response.ok) {
-      // console.log(response);
       response.json().then(function (data) {
         console.log(data);
         displayXP(data, mon);
@@ -52,23 +47,8 @@ var getMonsterStats = function (mon) {
       alert("Error: " + response.statusText);
     }
   });
-  // .then(function (response) {
-  //   return response.json();
-  // })
-  // .then(function (data) {
-  //   console.log(data);
-  // });
 };
-
-// Joey Help
-// fetch(fetchURLTwo)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   });
-
+// Displaying the monster data for first API //
 var displayStats = function (monStat, monName) {
   if (monStat.length === 0) {
     monsterContainerEl.textContent = "No monsters found.";
@@ -79,8 +59,6 @@ var displayStats = function (monStat, monName) {
   console.log(monStat);
 
   for (var i = 0; i < monStat.results.length; i++) {
-    // console.log(monStat.results[i].name);
-    // console.log(monName);
     if (monStat.results[i].name.toLowerCase() === monName.toLowerCase()) {
       var armorClass = monStat.results[i].armor_class;
 
