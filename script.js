@@ -47,7 +47,7 @@ var getMonsterStats = function (mon) {
       // console.log(response);
       response.json().then(function (data) {
         console.log(data);
-        // displayStats(data, mon);
+        displayXP(data, mon);
       });
     } else {
       alert("Error: " + response.statusText);
@@ -147,53 +147,60 @@ var displayStats = function (monStat, monName) {
 // second API dynamic HTML
 var displayXP = function (monStat, monName) {
   if (monStat.length === 0) {
-    monsterContainerEl.textContent = "No monsters found.";
-    return;
-  }
+    var displayXP = function (monStat, monName) {
+      if (!monStat) {
+        monsterContainerEl.textContent = "No monsters found.";
+        return;
+      }
 
-  searchMonster.textContent = monName;
-  console.log(monStat);
-  //tried using the same format for the other API but took out the name parameters since it's not in this path.
-  //also tried renaming everything so that theyre different
-  //this doesnt work but when i checked the console the div for this isnt showing up at all but idk if data needs to populate for the div to populategi
-  for (var i = 0; i < monStat.length; i++) {
-    console.log(monName);
+      searchMonster.textContent = monName;
+      console.log(monStat);
+      //tried using the same format for the other API but took out the name parameters since it's not in this path.
+      //also tried renaming everything so that theyre different
+      //this doesnt work but when i checked the console the div for this isnt showing up at all but idk if data needs to populate for the div to populategi
+      for (var i = 0; i < monStat.length; i++) {
+        console.log(monName);
 
-    if (monStat.toLowerCase() === monName.toLowerCase()) {
-      var experience = monStat.xp;
+        if (monStat.toLowerCase() === monName.toLowerCase()) {
+          var experience = monStat.xp;
 
-      var xpEl = document.createElement("div");
-      xpEl.classList = "list-item flex-row justify-space-between align-center";
-      xpEl.textContent = "XP gained: ";
+          var xpEl = document.createElement("div");
+          xpEl.classList =
+            "list-item flex-row justify-space-between align-center";
+          xpEl.textContent = "XP gained: ";
 
-      var titleEl = document.createElement("span");
-      titleEl.textContent = experience;
+          var experience = monStat.xp;
 
-      xpEl.appendChild(titleEl);
+          var titleEl = document.createElement("span");
+          titleEl.textContent = experience;
 
-      var experienceEl = document.createElement("span");
-      experienceEl.classList = "flex-row align-center";
+          xpEl.appendChild(titleEl);
 
-      xpEl.appendChild(experienceEl);
+          var experienceEl = document.createElement("span");
+          experienceEl.classList = "flex-row align-center";
 
-      monsterContainerEl.appendChild(xpEl);
-    }
+          xpEl.appendChild(experienceEl);
+
+          monsterContainerEl.appendChild(xpEl);
+        }
+      }
+    };
+
+    userFormEl.addEventListener("submit", formSubmitHandler);
+
+    //Modal//
+    const huntButton = document.querySelector(".btn");
+    const modalBg = document.querySelector(".modal-background");
+    const modal = document.querySelector(".modal");
+
+    //Allows modal to be removed once background is clicked//
+    modalBg.addEventListener("click", () => {
+      modal.classList.remove("is-active");
+    });
+
+    //Allows modal to be removed once clicked//
+    modal.addEventListener("click", () => {
+      modal.classList.remove("is-active");
+    });
   }
 };
-
-userFormEl.addEventListener("submit", formSubmitHandler);
-
-//Modal//
-const huntButton = document.querySelector(".btn");
-const modalBg = document.querySelector(".modal-background");
-const modal = document.querySelector(".modal");
-
-//Allows modal to be removed once background is clicked//
-modalBg.addEventListener("click", () => {
-  modal.classList.remove("is-active");
-});
-
-//Allows modal to be removed once clicked//
-modal.addEventListener("click", () => {
-  modal.classList.remove("is-active");
-});
